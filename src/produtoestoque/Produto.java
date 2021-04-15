@@ -9,12 +9,34 @@ public class Produto {
     
     
     Scanner in = new Scanner(System.in);
-    public String nome;
-    public double preco;
-    public int quantidade;
+    private String nome;
+    private double preco;
+    private int quantidade;
+
+    public Produto(String nome, double preco, int quant){
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quant;
+    }
     
-    private Double precoTotal(){
-        double precototal = this.preco*this.quantidade;
+    public String getNome(){
+        return this.nome;
+    }
+    
+    public double getPreco(){
+        return this.preco;
+    }
+    
+    public int getQuantidade(){
+        return this.quantidade;
+    }
+    
+    public void setQuantidade(int quantidade){
+        this.quantidade = quantidade;
+    }
+    
+    private Double calcPrecoTotal(){
+        double precototal = getPreco()*getQuantidade();
         return precototal;
     }
     
@@ -29,23 +51,9 @@ public class Produto {
     }
     
     public void infoProduto(){
-        System.out.printf("Nome do produto: \t%s\n", this.nome);
-        System.out.printf("Preço do produto: \tR$%.2f\n", this.preco);
-        System.out.printf("Quantidade em estoque: \t%d\n", this.quantidade);
-        System.out.printf("Valor total: \t\tR$%.2f\n", this.precoTotal());
-    }
-    
-    public void menuProduto(){
-        int resp;
-        do{
-            System.out.print(this.nome + ": ADICIONAR[1], REMOVER[2] ou CONSULTAR[3] produto? ([0] para SAIR)");
-            resp = in.nextInt();
-            switch(resp){
-                case 1 -> this.addProduto();
-                case 2 -> this.removeProduto();
-                case 3 -> this.infoProduto();
-            }
-        }while(resp!=0);
-    }
-    
+        System.out.printf("Nome do produto: \t%s\n", getNome());
+        System.out.printf("Preço do produto: \tR$%.2f\n", getPreco());
+        System.out.printf("Quantidade em estoque: \t%d\n", getQuantidade());
+        System.out.printf("Valor total: \t\tR$%.2f\n", this.calcPrecoTotal());
+    }    
 }
